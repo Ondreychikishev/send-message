@@ -23,3 +23,33 @@ git add .
 git commit -am "some comments"
 git push
 ```
+## Что необходимо настроить
+
+Устанавливаем правило когда отправлять сообщение
+```
+rule.hour = 15;
+```
+Возможные параметры:
+```
+second (0-59)
+minute (0-59)
+hour (0-23)
+date (1-31)
+month (0-11)
+year
+dayOfWeek (0-6) 
+```
+Прописываем id google таблицы из которой берем chatId пользователей:
+
+```
+var resUser = request('GET', 'http://tools.aimylogic.com/api/googlesheet2json?sheet=1&id=your_id');
+```
+
+Прописываем токен бота с которого будет происходить рассылка:
+
+```
+var res = request('POST', 'https://api.telegram.org/bot<token>/sendMessage', {
+           json: {"chat_id": userList[i].userid, "text": "Hello world!"},
+           headers: {"Content-Type": "application/json"}
+        });
+```
